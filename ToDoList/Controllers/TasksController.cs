@@ -36,6 +36,34 @@ namespace ToDoList.Controllers
             return View(task);
         }
 
+        //THIS IS WHAT WE DID IN CLASS
+
+        public ActionResult ToggleComplete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Task task = db.Tasks.Find(id); //pulling the id number
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            if (task.IsComplete)  //checking if the box is checked
+            {
+                task.IsComplete = false; //if so, unchecking it
+            }
+            else
+            {
+                task.IsComplete = true; //if not, checking it
+            }
+
+            db.SaveChanges(); //saving changes to the database
+
+            return RedirectToAction("Index"); //essentially refreshing the page with the new results
+        }
+
+
         // GET: Tasks/Create
         public ActionResult Create()
         {

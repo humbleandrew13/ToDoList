@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.IsComplete)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.List.Title)
         </th>
         <th>
@@ -19,9 +22,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsComplete)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -32,6 +32,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @*@Html.DisplayFor(modelItem => item.IsComplete)*@
+            <a href="@Url.Action("ToggleComplete", new { id=item.TaskID })">
+                @if (item.IsComplete)
+                {
+                    <span class="glyphicon glyphicon-check"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-unchecked"></span>
+                }
+            </a>
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.List.Title)
         </td>
         <td>
@@ -39,9 +52,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsComplete)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)

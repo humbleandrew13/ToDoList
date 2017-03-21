@@ -13,7 +13,7 @@ namespace ToDoList.Models
         public int ListID { get; set; }
 
         public string Title { get; set; }
-        DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         public virtual ICollection<Task> Tasks { get; set; }
     }
